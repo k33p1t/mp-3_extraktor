@@ -1,0 +1,68 @@
+import os
+import tkinter as tk
+from tkinter import filedialog, messagebox
+from pytube import YouTube
+from moviepy.editor import *
+
+# Function to download video from YouTube and convert to MP3
+def download_and_convert(url, output_path):
+    try:
+        # Download video
+        yt = YouTube(url)
+        video = yt.streams.filter(only_audio=True).first()
+        out_file = video.download(output_path=output_path)
+        
+        # Convert to MP3
+        base, ext = os.path.splitext(out_file)
+        new_file = base + '.mp3'
+        audio_clip = AudioFileClip(out_file)
+        audio_clip.write_audiofile(new_file)
+        audio_clip.close()
+
+        # Remove the video file after conversion
+        os.remove(out_file)
+        
+        messagebox.showinfo("Success", f"Downloaded and converted to MP3: {new_file}")
+    except Exception as e:
+        messagebox.showerror("Error", str(e))
+
+# Function to browse output directory
+def browse_output_path():
+    directory = filedialog.askdirectory()
+    output_path_entry.delete(0, tk.END)
+    output_path_entry.insert(0, directory)
+
+# Function to start the download and conversion process
+def start_download():
+    url = url_entry.get()
+    output_path = output_path_entry.get()
+    if url and output_path:
+        download_and_convert(url, output_path)
+    else:
+        messagebox.showwarning("Input Error", "Please provide both URL and output path.")
+
+# Setting up the GUI
+root = tk.Tk()
+root.title("MP3 Extractor")
+root.geometry("400x200")
+root.resizable(False, False)
+
+# URL entry
+tk.Label(root, text="YouTube URL:").pack(pady=5)
+url_entry = tk.Entry(root, width=50)
+url_entry.pack(pady=5)
+
+# Output path entry
+tk.Label(root, text="Output Path:").pack(pady=5)
+output_path_entry = tk.Entry(root, width=50)
+output_path_entry.pack(pady=5)
+
+# Browse button
+browse_button = tk.Button(root, text="Browse", command=browse_output_path)
+browse_button.pack(pady=5)
+
+# Download button
+download_button = tk.Button(root, text="Download and Convert", command=start_download)
+download_button.pack(pady=20)
+
+root.mainloop()
