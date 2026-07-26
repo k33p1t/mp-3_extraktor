@@ -19,6 +19,10 @@ import math
 import random
 import tempfile
 import webbrowser
+import graphviz
+from PIL import Image, ImageTk
+import tempfile
+import os
 from pathlib import Path
 from io import BytesIO
 from queue import Queue
