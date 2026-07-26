@@ -1,41 +1,37 @@
 # HoloAudio
 
-A futuristic holographic-style desktop application that combines:
+A futuristic holographic-style desktop application built with CustomTkinter.
 
-- Video → Audio extractor (MP3 / AAC)
-- Media Player (VLC-powered) with spectrum visualizer
-- YouTube integration (login, search, playlists, liked videos)
-- Spotify integration (login, search, 30s previews)
-- Network discovery (non-aggressive ping sweep + Graphviz topology)
+**Features:**
+- Video → Audio Extractor (MP3 / AAC)
+- Media Player with VLC + real-time spectrum visualizer
+- YouTube integration (OAuth login, search, playlists, thumbnails)
+- Spotify integration (OAuth login, search, 30-second previews)
+- Network Discovery (non-aggressive local subnet ping sweep + Graphviz topology diagrams)
 
 Designed with a dark cyan holographic UI inspired by sci-fi dashboards.
 
 ---
 
-## Features
+## Screenshots
 
-- **Extractor** – Convert video to MP3 or AAC with progress bar and bitrate selection
-- **Player** – Clean Now Playing interface + real-time spectrum visualizer
-- **YouTube** – OAuth login, search, playlists, thumbnails, play via VLC
-- **Spotify** – OAuth login, track search, preview playback
-- **Network** – Safe local subnet ping sweep + Graphviz network diagram
+> Add your own screenshots here after running the app.
 
 ---
 
 ## Requirements
 
-- Python 3.10+
-- VLC media player installed on your system
-- Graphviz system package (for topology diagrams)
-- Nmap (optional – for enhanced host discovery)
+- Python 3.10 or higher
+- VLC Media Player installed on your system
+- Graphviz system package (for network diagrams)
 
 ### System Dependencies
 
 **Windows**
-- Install [VLC](https://www.videolan.org/)
-- Install [Graphviz](https://graphviz.org/download/) and add to PATH
-- (Optional) Install [Nmap](https://nmap.org/)
+- [VLC](https://www.videolan.org/)
+- [Graphviz](https://graphviz.org/download/) (add to PATH)
+- (Optional) [Nmap](https://nmap.org/)
 
 **macOS**
 ```bash
-brew install vlc graphviz nmap
+brew install vlc graphviz
